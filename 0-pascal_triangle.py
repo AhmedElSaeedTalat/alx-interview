@@ -1,15 +1,15 @@
 #!/usr/bin/python3
-"""
+'''
 module to create pascal's triangle
-"""
+'''
 
 
 def pascal_triangle(n):
-    """
+    '''
     pascal_traingle(n): function to display pacals triangle
     Args:
        n: number of rows
-    """
+    '''
     if n <= 0:
         return []
     main_list = []
