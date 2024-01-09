@@ -38,10 +38,10 @@ def checkKey(boxes, y, boxState):
 
 def canUnlockAll(boxes):
     """ function to find key for a box """
-    if len(boxes) <= 1:
-        return True
     if not isinstance(boxes, list):
         return False
+    if len(boxes) <= 1:
+        return True
     boxState = checkKey(boxes, 0, [])
     boxState[0] = True
     if False in boxState:
