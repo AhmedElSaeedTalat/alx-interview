@@ -2,7 +2,7 @@
 """ find key fot boxes """
 
 
-def checkKey(boxes, y, boxState):
+def checkKey(boxes, y, checker):
     """
         recursive function
         -- all boxes get checked except
@@ -15,25 +15,23 @@ def checkKey(boxes, y, boxState):
             y: index for box that needs to be unlocked
             boxState: list create to hold if key is found
     """
-    if len(boxState) == len(boxes):
-        return boxState
+    if checker is False and y > 1:
+        return checker
 
-    status = 0
     for i in range(len(boxes)):
+        checker = False
         if i == y:
             continue
         for value in boxes[i]:
             if value == y:
-                boxState.append(True)
-                status = 1
+                checker = True
                 break
-        if status == 1:
+        if checker is True:
             break
-    if status == 0:
-        boxState.append(False)
-
-    checkKey(boxes, y + 1, boxState)
-    return boxState
+    if y + 1 == len(boxes):
+        return checker
+    else:
+        return checkKey(boxes, y + 1, checker)
 
 
 def canUnlockAll(boxes):
@@ -42,8 +40,5 @@ def canUnlockAll(boxes):
         return False
     if len(boxes) == 1:
         return True
-    boxState = checkKey(boxes, 0, [])
-    boxState[0] = True
-    if False in boxState:
-        return False
-    return True
+    check = checkKey(boxes, 0, True)
+    return check
