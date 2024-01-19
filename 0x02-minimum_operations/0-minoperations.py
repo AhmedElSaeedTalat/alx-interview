@@ -1,6 +1,22 @@
 #!/usr/bin/python3
 """ Minimum Operations """
-from math import sqrt
+
+
+def check_prime(n, i, y):
+    """ function to check prime """
+    if n == 1:
+        return i
+
+    if n % y == 0:
+        n = n / y
+        i += y
+        y = 2
+
+    if y == n:
+        i += y
+        n /= y
+
+    return check_prime(n, i, y + 1)
 
 
 def minOperations(n):
@@ -11,14 +27,5 @@ def minOperations(n):
         i += 2
     if n == 1:
         return i
-    num = int(sqrt(n))
-    if num == 1:
-        i += n
-        return i
-    if n % num == 0:
-        i += num
-        y = 2
-        while num % y != 0 or y < num:
-            y += 1
-        i += y
+    i = check_prime(n, i, 2)
     return i
