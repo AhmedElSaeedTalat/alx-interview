@@ -5,10 +5,10 @@ import re
 
 
 pattern = r'^[\d+\.]+ - \[[\d+-: ]+\] \S+ \/\S+ \S+ (\d+) (\d+)$'
-total_size: int = 0
-count: int = 0
-status_dic: dict = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0,
-                    405: 0, 500: 0}
+total_size = 0
+count = 0
+status_dic = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0,
+              405: 0, 500: 0}
 try:
     for line in stdin:
         match = re.match(pattern, line)
