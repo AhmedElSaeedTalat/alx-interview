@@ -3,7 +3,7 @@
 from sys import stdin
 import re
 
-
+# 78.99.227.220 - [2017-02-05 23:25:51.534767] "GET /projects/260 HTTP/1.1" 401 724
 pattern = r'^[\d+\.]+ - \[[\d+-: ]+\] \S+ \/\S+ \S+ (\d+) (\d+)$'
 total_size = 0
 count = 0
@@ -21,9 +21,10 @@ try:
                 pass
             count += 1
         else:
+            print('false')
             continue
 
-        if count == 10:
+        if count == 1 or count == 10:
             print('File size:', total_size)
             for key, value in status_dic.items():
                 if value > 0:
