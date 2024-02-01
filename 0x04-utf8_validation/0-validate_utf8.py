@@ -10,7 +10,6 @@ def check_subsequences(i, data, sequence):
         return False
     while y < sequence:
         x = bin(data[y])[2:].zfill(8)
-        print(x)
         if not x.startswith('10'):
             valid = False
             break
@@ -24,7 +23,6 @@ def validUTF8(data):
     i = 0
     while i < len(data):
         x = bin(data[i])[2:].zfill(8)
-        print(x)
         if data[i] < 128 and x.startswith('0'):
             valid_list.append(True)
             i += 1
