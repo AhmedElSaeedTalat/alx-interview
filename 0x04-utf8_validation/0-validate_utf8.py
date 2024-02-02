@@ -8,6 +8,8 @@ def check_subsequences(i, data, sequence):
     valid = True
     if y >= len(data):
         return False
+    if len(data) < sequence:
+        return False
     while y < sequence:
         x = bin(data[y])[2:].zfill(8)
         if y == sequence - 1 and x.startswith('0'):
