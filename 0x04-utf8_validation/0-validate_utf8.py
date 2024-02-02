@@ -10,6 +10,9 @@ def check_subsequences(i, data, sequence):
         return False
     while y < sequence:
         x = bin(data[y])[2:].zfill(8)
+        if y == sequence - 1 and x.startswith('0'):
+            valid = True
+            break
         if not x.startswith('10'):
             valid = False
             break
