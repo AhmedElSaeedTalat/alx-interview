@@ -28,7 +28,7 @@ def check_n(args):
 
 def queen_recursion(n, chess_board, queen_position, column):
     """ queen recursion """
-    if column > 3:
+    if column > n - 1:
         return queen_position
     for i in range(n):
         if i in queen_position.keys():
@@ -47,8 +47,6 @@ def queen_recursion(n, chess_board, queen_position, column):
             chess_board[i][y] = 'Q'
             queen_position[i] = y
     positions = []
-    for i in chess_board:
-        print(i)
     for key, value in queen_position.items():
         positions.append([key, value])
     print(positions)
