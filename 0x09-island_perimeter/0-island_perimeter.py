@@ -54,7 +54,7 @@ def recursive_land(grid, i, j, total):
     return total
 
 
-def islandPerimeter(grid):
+def island_perimeter(grid):
     """
     :type grid: List[List[int]]
     :rtype: int
