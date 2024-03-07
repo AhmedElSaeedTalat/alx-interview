@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" is land perimeter problem solution """
 
 
 def recursive_land(grid, i, j, total):
