@@ -2,7 +2,14 @@
 
 
 def recursive_land(grid, i, j, total):
-    """ """
+    """
+        recursive function to check the total of params
+        Args:
+            i: row
+            j: column
+            total: total of params
+        Return - total of params
+    """
     if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]):
         return total
 
