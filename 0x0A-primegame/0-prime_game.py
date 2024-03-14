@@ -51,12 +51,21 @@ def isWinner(x, nums):
             winners['Maria'] += 1
             continue
         if nums[i] > 2:
-            y = 1
-            while y <= nums[i]:
-                list_number.append(y)
-                y += 1
-            winner = removePrimes(list_number)
-            winners[winner] += 1
+            if len(list_number) > nums[i]:
+                shorter_list = list_number[0:nums[i]]
+                print(shorter_list)
+                winner = removePrimes(shorter_list)
+                winners[winner] += 1
+            else:
+                if i == 0 or not list_number:
+                    y = 1
+                else:
+                    y = list_number[-1] + 1
+                while y <= nums[i]:
+                    list_number.append(y)
+                    y += 1
+                winner = removePrimes(list_number)
+                winners[winner] += 1
     if winners['Maria'] > winners['Ben']:
         return 'Maria'
     else:
