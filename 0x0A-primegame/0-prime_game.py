@@ -53,7 +53,6 @@ def isWinner(x, nums):
         if nums[i] > 2:
             if len(list_number) > nums[i]:
                 shorter_list = list_number[0:nums[i]]
-                print(shorter_list)
                 winner = removePrimes(shorter_list)
                 winners[winner] += 1
             else:
