@@ -55,6 +55,8 @@ def isWinner(x, nums):
     """ is winner """
     list_number = []
     primes = {}
+    if not nums or max(nums) == 1:
+        return None
     winners = {'Maria': 0, 'Ben': 0}
     for i in range(x):
         if nums[i] == 1:
@@ -79,6 +81,8 @@ def isWinner(x, nums):
                 winner = removePrimes(list(list_number), primes)
                 winners[winner['winnerName']] += 1
                 primes = winner['primes']
+    if winners['Maria'] == winners['Ben']:
+        return None
     if winners['Maria'] > winners['Ben']:
         return 'Maria'
     else:
