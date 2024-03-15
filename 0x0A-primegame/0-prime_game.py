@@ -2,17 +2,21 @@
 """ module to solve is winner problem """
 
 
-def checkPrime(n):
+def checkPrime(n, primes):
     """ check if number is prime """
+    if n in primes:
+        return primes[n]
     i = 2
     while i < n:
         if n % i == 0 and n != i:
+            primes[n] = False
             return False
         i += 1
+    primes[n] = True
     return True
 
 
-def removePrimes(list_number):
+def removePrimes(list_number, primes):
     """ remove primes and its multiples """
     player = 'Maria'
     heighest_number = list_number[-1]
@@ -22,7 +26,7 @@ def removePrimes(list_number):
             break
         if i == 1 or i == 0 and index + 1 != len(list_number):
             continue
-        if checkPrime(i):
+        if checkPrime(i, primes):
             foundPrime = True
             value = i
             while value <= heighest_number:
@@ -33,15 +37,17 @@ def removePrimes(list_number):
                 player = 'Ben'
             else:
                 player = 'Maria'
+    list_number = []
     if player == 'Maria':
-        return 'Ben'
+        return {'winnerName': 'Ben', 'primes': primes}
     else:
-        return 'Maria'
+        return {'winnerName': 'Maria', 'primes': primes}
 
 
 def isWinner(x, nums):
     """ is winner """
     list_number = []
+    primes = {}
     winners = {'Maria': 0, 'Ben': 0}
     for i in range(x):
         if nums[i] == 1:
@@ -53,8 +59,8 @@ def isWinner(x, nums):
         if nums[i] > 2:
             if len(list_number) > nums[i]:
                 shorter_list = list_number[0:nums[i]]
-                winner = removePrimes(shorter_list)
-                winners[winner] += 1
+                winner = removePrimes(shorter_list, primes)
+                winners[winner['winnerName']] += 1
             else:
                 if i == 0 or not list_number:
                     y = 1
@@ -63,8 +69,9 @@ def isWinner(x, nums):
                 while y <= nums[i]:
                     list_number.append(y)
                     y += 1
-                winner = removePrimes(list_number)
-                winners[winner] += 1
+                winner = removePrimes(list(list_number), primes)
+                winners[winner['winnerName']] += 1
+                primes = winner['primes']
     if winners['Maria'] > winners['Ben']:
         return 'Maria'
     else:
