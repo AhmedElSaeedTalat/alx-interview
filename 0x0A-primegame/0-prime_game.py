@@ -35,11 +35,12 @@ def removePrimes(list_number, primes):
             foundPrime = True
             list_number[index] = 0
             value = i
-            y = index + 1
-            while y < len(list_number):
-                if list_number[y] % value == 0:
-                    list_number[y] = 0
-                y += 1
+            if index + 1 < len(list_number):
+                y = index + 1
+                while y < len(list_number):
+                    if list_number[y] % value == 0:
+                        list_number[y] = 0
+                    y += 1
     list_number = []
     if foundPrime and player:
         return {'winnerName': player, 'primes': primes}
