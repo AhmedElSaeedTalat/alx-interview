@@ -19,8 +19,13 @@ def checkPrime(n, primes):
 def removePrimes(list_number, primes):
     """ remove primes and its multiples """
     player = 'Maria'
-    heighest_number = list_number[-1]
+    foundPrime = False
     for index, i in enumerate(list_number):
+        if foundPrime is True:
+            if player == 'Maria':
+                player = 'Ben'
+            else:
+                player = 'Maria'
         foundPrime = False
         if index + 1 == len(list_number) and i == 0:
             break
@@ -28,20 +33,21 @@ def removePrimes(list_number, primes):
             continue
         if checkPrime(i, primes):
             foundPrime = True
+            list_number[index] = 0
             value = i
-            while value <= heighest_number:
-                list_number[value - 1] = 0
-                value *= i
-        if foundPrime:
-            if player == 'Maria':
-                player = 'Ben'
-            else:
-                player = 'Maria'
+            y = index + 1
+            while y < len(list_number):
+                if list_number[y] % value == 0:
+                    list_number[y] = 0
+                y += 1
     list_number = []
-    if player == 'Maria':
-        return {'winnerName': 'Ben', 'primes': primes}
+    if foundPrime and player:
+        return {'winnerName': player, 'primes': primes}
     else:
-        return {'winnerName': 'Maria', 'primes': primes}
+        if player == 'Maria':
+            return {'winnerName': 'Ben', 'primes': primes}
+        else:
+            return {'winnerName': 'Maria', 'primes': primes}
 
 
 def isWinner(x, nums):
